@@ -8,7 +8,10 @@ const findRegionRoute = (origin, destination) => {
 
   if (regionOfDestination === regionOfOrigin) return routesAmount;
 
-  console.log(routes);
+  const interRegionalRoutes = routes.filter((route) => capitals[route[0]].region !== capitals[route[1]].region );
+  const regionRoutes = interRegionalRoutes.map((route) => [capitals[route[0]].region, capitals[route[1]].region])
+  console.log(regionRoutes);
+  
 }
 
 findRegionRoute('Macapá', 'Recife');
