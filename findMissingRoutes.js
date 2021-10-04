@@ -1,6 +1,6 @@
 const capitals = require('./utils/capitals');
 const routes = require('./utils/routes');
-const regions = ['Sul', 'Sudeste', 'Centro Oeste', 'Nordeste', 'Norte'];
+const regions = require('./utils/regions');
 
 const findMissingRoutes = () => {
   const allRegionRoutes = [];
@@ -31,7 +31,11 @@ const findMissingRoutes = () => {
     .find((fordRoute) => fordRoute[0] === route[1] && fordRoute[1] === route[0])
   );
 
-  return missingRoutes.length;
+  const unidirectionalRoutes = missingRoutes.filter((route) => !missingRoutes
+    .find((routeTwo) => route[0] === routeTwo[1] && route[1] === routeTwo[0])
+  );
+
+  return unidirectionalRoutes.length;
 }
 
 console.log(findMissingRoutes());
